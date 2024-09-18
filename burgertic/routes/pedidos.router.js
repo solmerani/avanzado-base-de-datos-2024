@@ -7,7 +7,9 @@ const router = Router();
 // ------------- COMPLETAR LAS RUTAS DE PEDIDOS -------------
 // IMPORTANTE: La ruta /usuario debe ir antes que la ruta /:id
 // Si no, Express interpretará "usuario" como un id y no funcionará correctamente
-
+router.get("/", PedidosController.getPedidos);
+router.get("/", PedidosController.getPedidosByUser);
+router.get("/:id", PedidosController.getPedidosByUser);
 // Recordar utilizar los middleware verifyToken y/o verifyAdmin en las rutas que correspondan
 
 export default router;

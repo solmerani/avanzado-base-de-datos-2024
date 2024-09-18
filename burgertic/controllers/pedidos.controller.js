@@ -1,7 +1,7 @@
 import PedidosService from "../services/pedidos.service.js";
 
 const getPedidos = async (req, res) => {
-    // --------------- COMPLETAR ---------------
+     // --------------- COMPLETAR ---------------
     /*
         Recordar que para cumplir con toda la funcionalidad deben:
 
@@ -10,9 +10,17 @@ const getPedidos = async (req, res) => {
             3. Devolver un mensaje de error si algo falló (status 500)
         
     */
+        try {
+            const Pedidos = await PedidosService.getPedidos ();
+            res.status(200).json(Pedidos);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
 };
 
 const getPedidosByUser = async (req, res) => {
+   const user = req.body.user;
+
     // --------------- COMPLETAR ---------------
     /*
         Recordar que para cumplir con toda la funcionalidad deben:
@@ -23,6 +31,14 @@ const getPedidosByUser = async (req, res) => {
             4. Devolver un mensaje de error si algo falló (status 500)
         
     */
+   try{
+    const pedido = await PedidosService.getPedidosByUser();
+    if(!pedido)
+        return res.status(404).json({ message: "El usuario no tiene pedidos" });
+
+   }catch(error){
+
+   }
 };
 
 const getPedidoById = async (req, res) => {
@@ -36,9 +52,32 @@ const getPedidoById = async (req, res) => {
             4. Devolver un mensaje de error si algo falló (status 500)
         
     */
+    const { id } = req.params;
+
+    if (!id) return res.status(400).json({ message: "Se necesita un ID" });
+
+    try {
+        const pedido = await Pedidos.Service.getPedidoById(id);
+        if (!pedido)
+            return res.status(404).json({ message: "Pedido no encontrado" });
+        res.json(pedido);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 const createPedido = async (req, res) => {
+    const pedido = req.body;
+
+    if (!pedido)
+        return res.status(400).json({ message: "Se necesita un pedido" });
+
+    try {
+        await PedidosService.createPedido(pedido);
+        res.json({ message: "Pedido creado con éxito" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
     // --------------- COMPLETAR ---------------
     /*
         Recordar que para cumplir con toda la funcionalidad deben:
