@@ -15,37 +15,37 @@ POST http://localhost:9000/pedidos/createPedido
 Content-Type: application/json
 
 {
-  "platos": [
-    {
-      "id": 1,
-      "cantidad": 2
-    },
-    {
-      "id": 2,
-      "cantidad": 3
-    },
-    {
-      "id": 4,
-      "cantidad": 5
-    }
-  ]
+    "id": 1,
+    "id_usuario": 20,
+    "fecha": "2021-10-15",
+    "estado": "pendiente",
+    "platos": [
+        {
+            "id": 1,
+            "cantidad": 2
+        },
+        {
+            "id": 2,
+            "cantidad": 1
+        }
+    ]
 }
-
 
 
 ### Aceptar un Pedido
 
-POST http://localhost:9000/pedidos/aceptarPedido/ HTTP/1.1
+PUT http://localhost:9000/pedidos/aceptarPedido/1 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer SoyProgramador
 
 ### Comenzar un Pedido
 
-POST http://localhost:9000/pedidos/comenzarPedido/ HTTP/1.1
+PUT http://localhost:9000/pedidos/comenzarPedido/ HTTP/1.1
 Content-Type: application/json
 
 ### Entregar un Pedido
 
-POST http://localhost:9000/pedidos/entregarPedido/ HTTP/1.1
+PUT http://localhost:9000/pedidos/entregarPedido/ HTTP/1.1
 Content-Type: application/json
 
 ### Eliminar un Pedido

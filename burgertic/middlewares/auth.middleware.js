@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import UsuariosService from "../services/usuarios.service.js";
+import "dotenv/config";
 
 
 export const verifyToken = async (req, res, next) => {

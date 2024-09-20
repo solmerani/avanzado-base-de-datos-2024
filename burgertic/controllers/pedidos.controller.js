@@ -81,7 +81,7 @@ const createPedido = async (req, res) => {
         return res.status(400).json({ message: "'platos' debe ser un array" });
     }
 
-    if(pedido.plato.length === 0 ){
+    if(!pedido){
         return res.status(400).json({message:"el array de productos debe tener al menos un producto"});
     }
     for (let plato of pedido.platos) {
@@ -89,7 +89,7 @@ const createPedido = async (req, res) => {
             return res.status(400).json({ message: "Cada plato debe tener un 'id' y una 'cantidad'" });
         }}
     try {
-        await PedidosService.createPedido(pedido);
+        await PedidosService.createPedido(pedido.id_usuario, pedido.platos);
         res.status(201).json({ message: "Pedido creado con éxito" });
     } catch (error) {
         res.status(500).json({ message: error.message });
