@@ -52,7 +52,7 @@ export const verifyAdmin = async (req, res, next) => {
     try {
         const userId = req.userId;
        
-        const user = await getUserById(userId);
+        const user = await UsuariosService.getUsuarioById(userId);
        
         if (!user || !user.isAdmin) {
             return res.status(403).json({ message: 'Access denied: Admins only' });

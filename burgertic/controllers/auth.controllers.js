@@ -6,10 +6,10 @@ import usuariosService from "../services/usuarios.service.js";
 const register = async (req, res) => {
     try {
         //Verificar que el body de la request tenga el campo usuario
-        const { nombre, apellido, email, password,  } = req.body;
+        const { nombre, apellido, email, password } = req.body;
 
         // Verificar que el campo usuario tenga los campos nombre, apellido, email y password
-        if (!nombre|| !apellido || !email || !password ) {
+        if (!nombre || !apellido || !email || !password ) {
             return res.status(400).json({ error: 'Todos los campos son obligatorios' });
         }
 
@@ -60,17 +60,19 @@ const login = async (req, res) => {
     // Verificar que el body de la request tenga el campo email y password
     const { email, password } = req.body;
 
+    console.log(email);
+
     if (!email || !password) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 //Buscar un usuario con el email recibido
    const resultados = await usuariosService.getUsuarioByEmail(email, password);
 
-   if (!usuario) {
+   if (!resultados) {
        return res.status(404).json({ error: 'Usuario no existe' });
    }
 
-   const user = resultados.rows[0];
+   const user = resultados;
 
    try {
     //Verificar que la contraseña recibida sea correcta
