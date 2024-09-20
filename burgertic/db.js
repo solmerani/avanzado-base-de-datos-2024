@@ -1,10 +1,10 @@
 import "dotenv/config";
 
 export const config = {
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
+    user: "burgertic_owner",
+    host: "ep-odd-snow-a57x1vph.us-east-2.aws.neon.tech",
+    database: "burgertic",
+    password: "zX1Kc8QqWupk",
     port: 5432,
     ssl: true,
 };

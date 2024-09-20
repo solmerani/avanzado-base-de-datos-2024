@@ -4,11 +4,11 @@ import { verifyToken, verifyAdmin } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", PlatosController.getPlatos);
-router.get("/:id", PlatosController.getPlatoById);
-router.get("/tipo/:tipo", PlatosController.getPlatosByTipo);
-router.post("/", verifyToken, verifyAdmin, PlatosController.createPlato);
-router.put("/:id", verifyToken, verifyAdmin, PlatosController.updatePlato);
-router.delete("/:id", verifyToken, verifyAdmin, PlatosController.deletePlato);
+router.get("/getPlatos", PlatosController.getPlatos);
+router.get("/getPlatos/:id", PlatosController.getPlatoById);
+router.get("/getPlatos/:tipo", PlatosController.getPlatosByTipo);
+router.post("/createPlato", verifyToken, verifyAdmin, PlatosController.createPlato);
+router.put("/updatePlato/:id", verifyToken, verifyAdmin, PlatosController.updatePlato);
+router.delete("/deletePlato/:id", verifyToken, verifyAdmin, PlatosController.deletePlato);
 
 export default router;
