@@ -25,7 +25,7 @@ Content-Type: application/json
 
 ### Todos los pedidos
 GET http://localhost:9000/pedidos HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MTU0MSwiZXhwIjoxNzI2ODg1MTQxfQ.8Zp2nB8WSQfVByq9wCjMcpyR0ijlLQvnIRMGG6FHGxE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjQ3MywiZXhwIjoxNzI2ODg2MDczfQ.5WWoHEVWopS-8AjjnfNLb_X5qwxzHw7MVOwCQu5_9tw
 
 ### Pedidos por ID
 GET http://localhost:9000/pedidos/1 HTTP/1.1
@@ -68,29 +68,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6M
 
 ### Comenzar Pedidos
 PUT http://localhost:9000/pedidos/5/comenzar HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MTU0MSwiZXhwIjoxNzI2ODg1MTQxfQ.8Zp2nB8WSQfVByq9wCjMcpyR0ijlLQvnIRMGG6FHGxE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjY0MCwiZXhwIjoxNzI2ODg2MjQwfQ.RgZT58UT65kNTP0sPUByKIuhFevBv4RRAIpIrFTp-xI
 
-## Entregar Pedidos
+### Entregar Pedidos
 PUT http://localhost:9000/pedidos/1/entregar HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg2Njg3NywiZXhwIjoxNzI2ODcwNDc3fQ.5kVWvQ_AMVBqzW_zAYha1IBjmuEIyWphCKZ6mKkZ9g0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjY0MCwiZXhwIjoxNzI2ODg2MjQwfQ.RgZT58UT65kNTP0sPUByKIuhFevBv4RRAIpIrFTp-xI
 
-## Eliminar Pedido
+### Eliminar Pedido
 DELETE http://localhost:9000/pedidos/2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg2Njg3NywiZXhwIjoxNzI2ODcwNDc3fQ.5kVWvQ_AMVBqzW_zAYha1IBjmuEIyWphCKZ6mKkZ9g0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjY0MCwiZXhwIjoxNzI2ODg2MjQwfQ.RgZT58UT65kNTP0sPUByKIuhFevBv4RRAIpIrFTp-xI
 
 ## Platos
 
 ### Todos los platos
 GET http://localhost:9000/platos HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjQ3MywiZXhwIjoxNzI2ODg2MDczfQ.5WWoHEVWopS-8AjjnfNLb_X5qwxzHw7MVOwCQu5_9tw
 
 ### Platos por ID
 GET http://localhost:9000/platos/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjQ3MywiZXhwIjoxNzI2ODg2MDczfQ.5WWoHEVWopS-8AjjnfNLb_X5qwxzHw7MVOwCQu5_9tw
 
 ### Plato por Tipo
 GET http://localhost:9000/platos/tipo/combo HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjQ3MywiZXhwIjoxNzI2ODg2MDczfQ.5WWoHEVWopS-8AjjnfNLb_X5qwxzHw7MVOwCQu5_9tw
 
 ### Crear Plato
 POST http://localhost:9000/platos HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTcyNjg4MjQ3MywiZXhwIjoxNzI2ODg2MDczfQ.5WWoHEVWopS-8AjjnfNLb_X5qwxzHw7MVOwCQu5_9tw
 Content-Type: application/json
 
 {
