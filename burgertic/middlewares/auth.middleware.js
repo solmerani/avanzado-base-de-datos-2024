@@ -4,29 +4,28 @@ import "dotenv/config";
 
 
 export const verifyToken = async (req, res, next) => {
+    const secret = "AguanteTIC";
     try {
-     
         const authHeader = req.headers.authorization;
         if (!authHeader) {
             return res.status(401).json({ message: 'No token provided' });
         }
 
-
-        const token = authHeader.split(' ')[1];
-        if (!authHeader.startsWith('Bearer ') || !token) {
+        if (!authHeader.startsWith('Bearer ')) {
             return res.status(401).json({ message: 'Invalid token format' });
         }
 
+        const token = authHeader.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Invalid token format' });
+        }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-       
-        if (!decoded || !decoded.userId) {
+        const decoded = jwt.verify(token, secret);
+        if (!decoded || !decoded.id) {
             return res.status(401).json({ message: 'Invalid token' });
         }
 
-
-        req.userId = decoded.userId;
-       
+        req.userId = decoded.id;
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Unauthorized', error: error.message });
@@ -51,22 +50,30 @@ export const verifyToken = async (req, res, next) => {
 
 export const verifyAdmin = async (req, res, next) => {
     try {
-        const userId = req.userId;
-       
-        const user = await UsuariosService.getUsuarioById(userId);
-       
-        if (!user || !user.isAdmin) {
-            return res.status(403).json({ message: 'Access denied: Admins only' });
+        const authHeader = req.headers.authorization;
+        const secret = "AguanteTIC";
+
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Authorization header missing or malformed' });
         }
 
+        const token = authHeader.split(' ')[1]; // Obtener el token del encabezado de autorización
+        const decoded = jwt.verify(token, secret); // Decodificar el token para obtener el id del usuario
+        const id = decoded.id;
 
+        console.log(`User ID: ${id}`);
+        
+        const user = await UsuariosService.getUsuarioById(id);
+
+        console.log(`User: ${JSON.stringify(user)}`);
+
+        if (!user || !user.admin) {
+            return res.status(403).json({ message: 'Access denied: Admins only' });
+        }
         next();
     } catch (error) {
         return res.status(500).json({ message: 'Server error', error: error.message });
     }
-   
-   
-   
     // --------------- COMPLETAR ---------------
     /*
 

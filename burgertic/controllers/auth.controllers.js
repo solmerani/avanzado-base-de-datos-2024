@@ -1,4 +1,3 @@
-import UsuariosService from "../services/usuarios.service.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import usuariosService from "../services/usuarios.service.js";
@@ -57,40 +56,40 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    // Verificar que el body de la request tenga el campo email y password
     const { email, password } = req.body;
+
+    const secret = "AguanteTIC";
 
     console.log(email);
 
     if (!email || !password) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
-//Buscar un usuario con el email recibido
-   const resultados = await usuariosService.getUsuarioByEmail(email, password);
 
-   if (!resultados) {
-       return res.status(404).json({ error: 'Usuario no existe' });
-   }
+    const resultados = await usuariosService.getUsuarioByEmail(email, password);
 
-   const user = resultados;
-
-   try {
-    //Verificar que la contraseña recibida sea correcta
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-        return res.status(401).json({ error: 'Contraseña incorrecta' });
+    if (!resultados) {
+        return res.status(404).json({ error: 'Usuario no existe' });
     }
-    //Crear un token con el id del usuario y firmarlo con la clave secreta (utilizando la librería jsonwebtoken)
-    const token = jwt.sign(
-        { id: user.id },
-        process.env.JWT_SECRET || "secret_key",
-        { expiresIn: "1h" }
-    )
-   // Devolver un json con el usuario y el token (status 200) y Devolver un mensaje de error si algo falló (status 500)
-    return res.status(200).json({ resultados, token })
-   } catch (err) {
-    return res.status(500).json({ message: "Ocurrio un fallo en la creacion del token" });
-   }
+
+    const user = resultados;
+
+    try {
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+            return res.status(401).json({ error: 'Contraseña incorrecta' });
+        }
+        const token = jwt.sign(
+            { id: user.id },
+            secret,
+            { expiresIn: "1h" }
+        );
+
+        // Incluir el token en la respuesta JSON
+        return res.status(200).json({ resultados, token });
+    } catch (err) {
+        return res.status(500).json({ message: "Ocurrio un fallo en la creacion del token" });
+    }
 
     // --------------- COMPLETAR ---------------
     /*
